@@ -1,1 +1,0 @@
-# rails-demo-project
