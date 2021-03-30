@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'posts/index'
-  get 'posts/new'
-  get 'posts/create'
-  get 'posts/show'
-  get 'posts/edit'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :posts #instead of creating each method route for posts separately, we can use this
+  root 'posts#index' #now this view will load at start
 end
