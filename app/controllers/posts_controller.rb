@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy] #call find_post before these actions
 
   def index
+    FirstJob.perform_later 1,2,3
     @posts = Post.all.order("created_at DESC")
   end
 
