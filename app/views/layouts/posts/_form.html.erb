@@ -1,14 +1,14 @@
-
-<%= form_for @post do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-  </div>
-  <%= f.submit %>
-<% end %>
-
+<div class="container">
+  <%= form_for @post do |f| %>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
 <%# form_for is a helper method instantiates a form builder. Try to use form_with next time %>
