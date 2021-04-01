@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_060020) do
+ActiveRecord::Schema.define(version: 2021_04_01_100337) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "course_name"
+    t.string "course_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.string "title"
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "category_id"
+  end
 
   create_table "people", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,6 +52,34 @@ ActiveRecord::Schema.define(version: 2021_04_01_060020) do
     t.datetime "updated_at", null: false
     t.string "sku_number"
     t.index ["sku_number"], name: "index_products_on_sku_number"
+  end
+
+  create_table "products_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.string "roll_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "course_type"
+    t.integer "course_id"
+    t.index ["course_type", "course_id"], name: "index_students_on_course_type_and_course_id"
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
