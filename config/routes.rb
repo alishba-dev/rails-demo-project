@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :books
+  resources :authors
   resources :suppliers
   resources :products
   resources :posts #instead of creating each method route for posts separately, we can use this
