@@ -1,0 +1,17 @@
+<%= form_with(model: employee, local: true) do |form| %>
+
+  <%= render 'layouts/error_message', :target => employee %>
+  <div class="field">
+    <%= form.label :name %><%= mark_required(employee, :name) %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %><%= mark_required(employee, :email) %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
