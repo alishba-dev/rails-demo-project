@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  legs: 1
+  top: 1
+  material: MyString
+
+two:
+  legs: 1
+  top: 1
+  material: MyString
