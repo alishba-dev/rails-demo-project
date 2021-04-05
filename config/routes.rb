@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'tweets/index'
+  get 'tweets/new'
+  resources :tweets
   resources :employees
   resources :animals
   resources :books
