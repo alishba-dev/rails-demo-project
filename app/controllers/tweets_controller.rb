@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
       flash[:notice] = "New Tweet was created."
       redirect_to tweets_index_path
     else
-      flash[:notice] = "Something went wrong."
+      flash.now[:error] = "Something went wrong."
       redirect_to new_tweets_path
     end
   end
