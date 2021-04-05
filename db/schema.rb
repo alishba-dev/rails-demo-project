@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_04_02_111030) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "animals", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_04_02_111030) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
@@ -97,8 +100,8 @@ ActiveRecord::Schema.define(version: 2021_04_02_111030) do
   end
 
   create_table "products_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "product_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -107,14 +110,8 @@ ActiveRecord::Schema.define(version: 2021_04_02_111030) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "course_type"
-    t.integer "course_id"
+    t.bigint "course_id"
     t.index ["course_type", "course_id"], name: "index_students_on_course_type_and_course_id"
-  end
-
-  create_table "suppliers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "tables", force: :cascade do |t|
@@ -140,4 +137,5 @@ ActiveRecord::Schema.define(version: 2021_04_02_111030) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "books", "authors"
 end
