@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  scope module: 'admin' do
+    resources :articles, :comments
+  end
   resources :session, only: [:create]
   get 'tweets/index'
   get 'tweets/new'
