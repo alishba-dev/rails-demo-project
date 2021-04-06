@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :projects
+  resources :tasks
+  resources :projects do
+    resources :tasks, controller: 'projects/tasks'
+  end
   scope module: 'admin' do
     resources :articles, :comments
   end
