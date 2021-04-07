@@ -1,4 +1,4 @@
 <h1>All Posts</h1>
-<% @posts.each do |post| %>
-  <%= render partial: 'shared/post',locals: { post: post } %>
-<% end %>
+
+
+<%= render partial: "shared/post", collection: @posts %>
