@@ -1,0 +1,32 @@
+<div class="container">
+  <%= form_for @candidate do |f| %>
+    <div class='row'>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class='row'>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class='row'>
+      <%= f.label :age %>
+      <%= f.text_field :age %>
+    </div>
+    <div class='row'>
+      <%= f.label :dob %>
+      <%= select_date(Date.today) %>
+    </div>
+    <div class='row'>
+      <%= f.label 'Married' %>
+      <span>
+        <%= f.label 'Yes' %>
+        <%= radio_button("candidates", "married", "yes") %>
+      </span>
+      <span>
+        <%= f.label 'No' %>
+        <%= radio_button("candidates", "married", "no") %>
+      </span>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
