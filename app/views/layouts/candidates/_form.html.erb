@@ -14,17 +14,17 @@
     </div>
     <div class='row'>
       <%= f.label :dob %>
-      <%= select_date(Date.today) %>
+      <%= date_field('candidate','dob') %>
     </div>
     <div class='row'>
       <%= f.label 'Married' %>
       <span>
         <%= f.label 'Yes' %>
-        <%= radio_button("candidates", "married", "yes") %>
+        <%= radio_button("candidates", "is_married", "yes") %>
       </span>
       <span>
         <%= f.label 'No' %>
-        <%= radio_button("candidates", "married", "no") %>
+        <%= radio_button("candidates", "is_married", "no") %>
       </span>
     </div>
     <%= f.submit %>

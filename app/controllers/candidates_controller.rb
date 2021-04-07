@@ -15,7 +15,6 @@ class CandidatesController < ApplicationController
 
   def create
     @candidate = Candidate.new(candidate_params)
-
     respond_to do |format|
       if @candidate.save
         format.html { redirect_to @candidate, notice: "Candidate was successfully created." }
