@@ -4,6 +4,10 @@ class Admin::ArticlesController < Admin::BaseController
 
   def index
     @articles = Article.all
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
 
   def create
