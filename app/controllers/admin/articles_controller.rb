@@ -3,6 +3,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def index
+    @articles = Article.all
   end
 
   def create
@@ -18,5 +19,10 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def show
+    @article = Article.find(params[:id])
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: @article, only: [:id] }
+    # end
   end
 end
