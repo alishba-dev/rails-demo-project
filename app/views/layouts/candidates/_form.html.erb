@@ -1,32 +1,29 @@
 <div class="container">
-  <%= form_for @candidate do |f| %>
+  <%= form_tag do %>
     <div class='row'>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
+      <%= label_tag 'First Name' %>
+      <%= text_field_tag 'first_name', @candidate.first_name %>
     </div>
     <div class='row'>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
+       <%= label_tag 'Last Name' %>
+      <%= text_field_tag 'last_name', @candidate.last_name %>
     </div>
     <div class='row'>
-      <%= f.label :age %>
-      <%= f.text_field :age %>
+       <%= label_tag 'Age' %>
+      <%= text_field_tag 'age', @candidate.age %>
     </div>
     <div class='row'>
-      <%= f.label :dob %>
-      <%= date_field('candidate','dob') %>
+      <%= label_tag 'DOB' %>
+      <%= date_field_tag 'dob', @candidate.dob %>
     </div>
     <div class='row'>
-      <%= f.label 'Married' %>
-      <span>
-        <%= f.label 'Yes' %>
-        <%= radio_button("candidates", "is_married", "yes") %>
-      </span>
-      <span>
-        <%= f.label 'No' %>
-        <%= radio_button("candidates", "is_married", "no") %>
-      </span>
+      <%= label_tag 'Married' %>
+      <%= radio_button_tag(:is_married, "Yes") %>
+      <%= label_tag(:is_married, "Yes") %>
+      <%= radio_button_tag(:is_married, "No") %>
+      <%= label_tag(:is_married, "No") %>
+
     </div>
-    <%= f.submit %>
+    <%= submit_tag  %>
   <% end %>
 </div>
