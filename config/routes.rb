@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :personrails
+  resources :mails
   resources :projects do
     resources :tasks,  only: [:index, :new, :create]
   end

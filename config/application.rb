@@ -18,6 +18,6 @@ module RailsProject
 
     config.active_job.queue_adapter = :sidekiq #add the adapter
     # can also use like this config.active_job.queue_adapter = Rails.env.production ? :sidekiq : :async
-
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
   end
 end

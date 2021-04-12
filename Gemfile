@@ -6,6 +6,8 @@ ruby '2.7.2'
 # adding bootstrap gem
 gem 'bootstrap' , '~> 4.0.0'
 gem 'sidekiq'
+
+
 # Autoprefixer doesn’t support Node v4.9.1. Update it. How to fix? Use mini-racer //issue faced by me
 gem 'mini_racer'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -45,6 +47,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'figaro'
 end
 
 group :development do

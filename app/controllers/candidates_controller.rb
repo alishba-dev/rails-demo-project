@@ -17,6 +17,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(candidate_params)
     respond_to do |format|
       if @candidate.save
+        DemoMailer.with(user: @candidate).welcome_email.deliver_later
         format.html { redirect_to @candidate, notice: "Candidate was successfully created." }
         format.json { render :show, status: :created, location: @candidate }
       else
