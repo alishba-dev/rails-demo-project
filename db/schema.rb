@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_141215) do
+ActiveRecord::Schema.define(version: 2021_04_13_145657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 2021_04_13_141215) do
     t.string "email"
   end
 
+  create_table "cars", force: :cascade do |t|
+    t.string "brand"
+    t.string "model"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "engineer_id"
+    t.index ["engineer_id"], name: "index_cars_on_engineer_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -92,6 +101,13 @@ ActiveRecord::Schema.define(version: 2021_04_13_141215) do
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "engineers", force: :cascade do |t|
+    t.string "fullname"
+    t.string "mobile_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -234,4 +250,5 @@ ActiveRecord::Schema.define(version: 2021_04_13_141215) do
   end
 
   add_foreign_key "books", "authors"
+  add_foreign_key "cars", "engineers"
 end
