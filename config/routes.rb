@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   # devise_for :personrails
-  resources :mails
+  # resources :mails
   resources :projects do
-    resources :tasks,  only: [:index, :new, :create]
+    resources :tasks
   end
-  resources :tasks, only: [:show, :edit, :update, :destroy]
+  # resources :tasks, only: [:show, :edit, :update, :destroy]
   scope module: 'admin' do
     resources :articles, :comments
   end
-  resources :candidates
+  resources :candidates do
+    resources :tasks
+  end
   resources :session, only: [:create]
   get 'tweets/index'
   get 'tweets/new'
