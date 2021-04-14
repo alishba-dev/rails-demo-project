@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_071941) do
+ActiveRecord::Schema.define(version: 2021_04_14_075316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 2021_04_14_071941) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "assemblies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "assemblies_parts", id: false, force: :cascade do |t|
+    t.bigint "part_id", null: false
+    t.bigint "assembly_id", null: false
+    t.bigint "parts_id"
+    t.bigint "assemblies_id"
+    t.index ["assemblies_id"], name: "index_assemblies_parts_on_assemblies_id"
+    t.index ["parts_id"], name: "index_assemblies_parts_on_parts_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -190,6 +204,11 @@ ActiveRecord::Schema.define(version: 2021_04_14_071941) do
   create_table "orders", force: :cascade do |t|
     t.string "payment_type"
     t.string "card_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -340,6 +359,8 @@ ActiveRecord::Schema.define(version: 2021_04_14_071941) do
   add_foreign_key "accounts", "suppliers"
   add_foreign_key "appointments", "patients"
   add_foreign_key "appointments", "physicians"
+  add_foreign_key "assemblies_parts", "assemblies", column: "assemblies_id"
+  add_foreign_key "assemblies_parts", "parts", column: "parts_id"
   add_foreign_key "books", "authors"
   add_foreign_key "cars", "engineers"
   add_foreign_key "model3s", "model1s"
