@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_075316) do
+ActiveRecord::Schema.define(version: 2021_04_14_082208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,11 +128,25 @@ ActiveRecord::Schema.define(version: 2021_04_14_075316) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "phone_number"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "course_name"
     t.string "course_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "emergencies", force: :cascade do |t|
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_emergencies_on_user_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -363,6 +377,8 @@ ActiveRecord::Schema.define(version: 2021_04_14_075316) do
   add_foreign_key "assemblies_parts", "parts", column: "parts_id"
   add_foreign_key "books", "authors"
   add_foreign_key "cars", "engineers"
+  add_foreign_key "contacts", "users"
+  add_foreign_key "emergencies", "users"
   add_foreign_key "model3s", "model1s"
   add_foreign_key "model3s", "model2s"
   add_foreign_key "peaks", "games"
