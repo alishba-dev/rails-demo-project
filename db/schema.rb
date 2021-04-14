@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_144618) do
+ActiveRecord::Schema.define(version: 2021_04_14_063553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2021_04_13_144618) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "physician_id"
+    t.bigint "patient_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["physician_id"], name: "index_appointments_on_physician_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -132,6 +141,25 @@ ActiveRecord::Schema.define(version: 2021_04_13_144618) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "model1s", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "model2s", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "model3s", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "model1_id"
+    t.bigint "model2_id"
+    t.index ["model1_id"], name: "index_model3s_on_model1_id"
+    t.index ["model2_id"], name: "index_model3s_on_model2_id"
+  end
+
   create_table "new_users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -142,6 +170,11 @@ ActiveRecord::Schema.define(version: 2021_04_13_144618) do
   create_table "orders", force: :cascade do |t|
     t.string "payment_type"
     t.string "card_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "patients", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -165,6 +198,11 @@ ActiveRecord::Schema.define(version: 2021_04_13_144618) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_personrails_on_email", unique: true
     t.index ["reset_password_token"], name: "index_personrails_on_reset_password_token", unique: true
+  end
+
+  create_table "physicians", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -228,6 +266,13 @@ ActiveRecord::Schema.define(version: 2021_04_13_144618) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tweets", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", null: false
@@ -249,6 +294,10 @@ ActiveRecord::Schema.define(version: 2021_04_13_144618) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appointments", "patients"
+  add_foreign_key "appointments", "physicians"
   add_foreign_key "books", "authors"
   add_foreign_key "cars", "engineers"
+  add_foreign_key "model3s", "model1s"
+  add_foreign_key "model3s", "model2s"
 end
