@@ -6,5 +6,6 @@ class EmailValidator < ActiveModel::EachValidator
   end
 end
 class Employee < ApplicationRecord
+  has_many :notes, as: :noteable
   validates :email, presence: true, uniqueness: true, email: true
 end
