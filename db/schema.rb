@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_063553) do
+ActiveRecord::Schema.define(version: 2021_04_14_071941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_histories", force: :cascade do |t|
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_histories_on_account_id"
+  end
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "supplier_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supplier_id"], name: "index_accounts_on_supplier_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -129,6 +143,12 @@ ActiveRecord::Schema.define(version: 2021_04_14_063553) do
     t.integer "category_id"
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "game_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -177,6 +197,14 @@ ActiveRecord::Schema.define(version: 2021_04_14_063553) do
   create_table "patients", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "peaks", force: :cascade do |t|
+    t.float "peak_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_peaks_on_game_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -251,6 +279,12 @@ ActiveRecord::Schema.define(version: 2021_04_14_063553) do
     t.index ["course_type", "course_id"], name: "index_students_on_course_type_and_course_id"
   end
 
+  create_table "suppliers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
   create_table "tables", force: :cascade do |t|
     t.integer "legs"
     t.integer "top"
@@ -271,6 +305,14 @@ ActiveRecord::Schema.define(version: 2021_04_14_063553) do
     t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "team_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "peak_id"
+    t.index ["peak_id"], name: "index_teams_on_peak_id"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -294,10 +336,14 @@ ActiveRecord::Schema.define(version: 2021_04_14_063553) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "account_histories", "accounts"
+  add_foreign_key "accounts", "suppliers"
   add_foreign_key "appointments", "patients"
   add_foreign_key "appointments", "physicians"
   add_foreign_key "books", "authors"
   add_foreign_key "cars", "engineers"
   add_foreign_key "model3s", "model1s"
   add_foreign_key "model3s", "model2s"
+  add_foreign_key "peaks", "games"
+  add_foreign_key "teams", "peaks"
 end
