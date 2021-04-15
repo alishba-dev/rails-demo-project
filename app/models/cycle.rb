@@ -1,0 +1,2 @@
+class Cycle < Vehicle
+end
