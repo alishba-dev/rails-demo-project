@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_161110) do
+ActiveRecord::Schema.define(version: 2021_04_15_173834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -409,6 +409,20 @@ ActiveRecord::Schema.define(version: 2021_04_15_161110) do
     t.index ["peak_id"], name: "index_teams_on_peak_id"
   end
 
+  create_table "trainees", force: :cascade do |t|
+    t.string "name"
+    t.bigint "trainer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trainer_id"], name: "index_trainees_on_trainer_id"
+  end
+
+  create_table "trainers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tweets", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", null: false
@@ -455,4 +469,5 @@ ActiveRecord::Schema.define(version: 2021_04_15_161110) do
   add_foreign_key "model3s", "model2s"
   add_foreign_key "peaks", "games"
   add_foreign_key "teams", "peaks"
+  add_foreign_key "trainees", "trainers"
 end
