@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_102501) do
+ActiveRecord::Schema.define(version: 2021_04_14_163741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,18 @@ ActiveRecord::Schema.define(version: 2021_04_14_102501) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
+  end
+
+  create_table "facebook_comments", force: :cascade do |t|
+    t.bigint "facebook_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facebook_post_id"], name: "index_facebook_comments_on_facebook_post_id"
+  end
+
+  create_table "facebook_posts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "games", force: :cascade do |t|
@@ -400,6 +412,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_102501) do
   add_foreign_key "cars", "engineers"
   add_foreign_key "contacts", "users"
   add_foreign_key "emergencies", "users"
+  add_foreign_key "facebook_comments", "facebook_posts"
   add_foreign_key "model3s", "model1s"
   add_foreign_key "model3s", "model2s"
   add_foreign_key "peaks", "games"
