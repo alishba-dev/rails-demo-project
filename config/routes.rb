@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :friendships
   resources :admins
   # devise_for :personrails
   resources :mails
