@@ -4,6 +4,7 @@ class Author < ApplicationRecord
              before_remove: :my_before_remove, after_remove: :my_after_remove
   validates_associated :books
 
+  # has_many :books, -> { extending FindRecentExtension }
   private
 
   def my_before_add(book)
