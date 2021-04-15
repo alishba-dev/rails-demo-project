@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  enum status: %i[draft published]
+  enum status: %i[draft published idk]
   enum super_post: { is_super: 0, is_not_super: 1 }
   enum archive: { is_archive: 1, is_not_archive: 0 }
 
