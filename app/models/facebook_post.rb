@@ -5,5 +5,5 @@ class FacebookPost < ApplicationRecord
     end
   end
   has_many :facebook_comments, dependent: :destroy
-  has_many :facebook_comments, -> { extending FindRecentExtension }
+  # has_many :facebook_comments, -> { extending FindRecentExtension }
 end
