@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_082119) do
+ActiveRecord::Schema.define(version: 2021_04_15_161110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -215,6 +215,9 @@ ActiveRecord::Schema.define(version: 2021_04_15_082119) do
   create_table "jobs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "worker_id"
+    t.string "name"
+    t.index ["worker_id"], name: "index_jobs_on_worker_id"
   end
 
   create_table "labourers", force: :cascade do |t|
@@ -354,6 +357,12 @@ ActiveRecord::Schema.define(version: 2021_04_15_082119) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "question_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "roll_no"
@@ -441,6 +450,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_082119) do
   add_foreign_key "contacts", "users"
   add_foreign_key "emergencies", "users"
   add_foreign_key "facebook_comments", "facebook_posts"
+  add_foreign_key "jobs", "workers"
   add_foreign_key "model3s", "model1s"
   add_foreign_key "model3s", "model2s"
   add_foreign_key "peaks", "games"
