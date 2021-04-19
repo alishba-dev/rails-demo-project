@@ -3,7 +3,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def index
-    @articles = Article.all
+    @articles = Article.all.page(params[:page]).per(5)
     respond_to do |format|
       format.html
       format.atom
